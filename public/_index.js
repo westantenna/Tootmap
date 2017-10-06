@@ -10,7 +10,7 @@ var controlMenu = function() {
         this.div.index = 1;
         this.mastodon_url = mastodon_url;
         this.div.innerHTML = "<div class='dropdown'>"
-            + "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"
+            + "<button class='btn btn-light dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"
             + "<span id='tapflgspan'>タップ[OFF]</span> / <span id='tagspan'>#"+tag+"</span>"
             + "</button>"
             + "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>"
