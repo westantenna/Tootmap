@@ -1,0 +1,8 @@
+node_modules
+functions/index.js
+public/index.html
+public/index.js
+.vscode
+.firebaserc
+database.rules.json
+firebase.json
