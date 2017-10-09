@@ -389,7 +389,7 @@ function getParam(parameter_name, def_val) {
 }
 
 function initialize() {
-    var api_url = "[API_URL(GET args: tag,limit,max_id)]";
+    var api_url = "[MASTODON_API_URL(GET args: tag,limit,max_id)]";
     var mastodon_url = "[MASTODON_URL]";
     var map_url = "[MAP_URL]";
     var default_tag = "biwakomap"
