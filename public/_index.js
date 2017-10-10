@@ -103,6 +103,7 @@ var tootMap = function(mastodon_url, map_url) {
                         that.now_geo_marker.setMap(null);
                     }
                     that.now_geo_marker = that.createMarker(now_geo, that.createContent(now_geo.lat(), now_geo.lng(), tag), './nowgeo-icon.png', true);
+                    google.maps.event.trigger(that.now_geo_marker, 'click');
                 },
                 function (error) {
                     var msg;
