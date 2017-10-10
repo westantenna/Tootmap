@@ -352,20 +352,24 @@ var timeline = function(api_url, map_url, tag) {
         var that = this;
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200 && this.responseText.length > 0) {
-                var arr = JSON.parse(this.responseText);
-                var last_date=''
-                arr.forEach(function(toot) {
-                    that.max_id = toot['id'];
-                    that.last_date = toot['created_at'];
-                    var toot = that.expandToot(toot);
-                    if (toot!=null) {
-                        that.timeline.push(toot);
-                    }
-                });
+                if (this.responseText.length == 0) {
+                    that.getTimeline(callback);
+                } else {
+                    var arr = JSON.parse(this.responseText);
+                    var last_date=''
+                    arr.forEach(function(toot) {
+                        that.max_id = toot['id'];
+                        that.last_date = toot['created_at'];
+                        var toot = that.expandToot(toot);
+                        if (toot!=null) {
+                            that.timeline.push(toot);
+                        }
+                    });
 
-                callback(that.timeline);
-                
-                that.hideLoader();
+                    callback(that.timeline);
+                    
+                    that.hideLoader();
+                }
             }
         };
         xhr.open("GET", tag_url, true);
