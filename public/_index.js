@@ -56,7 +56,7 @@ var controlMenu = function() {
         var date = new Date(last_date);
         var format_date = this.getFormatDate(date);
         if (format_date!="") {
-            $('#past-tagtl').html("<p class='btn'>過去のトゥート（" + format_date + "以前）</p>");
+            $('#past-tagtl').html("<p class='btn'>過去のトゥートを取得<br />（" + format_date + "以前）</p>");
         } else {
             $('#past-tagtl').html("");
             
