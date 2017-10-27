@@ -128,6 +128,17 @@ input[type=file] {
     background: transparent;
 }
 
+#loading-bg {
+    display:none;
+    width:100%;
+    height:100%;
+    background-color: rgba(255,255,255,0.5);
+    position:fixed;
+    top:0;
+    left:0;
+    z-index: 1;
+}
+
 #loading {
   display: none;
   position: fixed;
@@ -145,7 +156,6 @@ input[type=file] {
 #login-modal {
     display: none;
     width: 500px;
-
     margin: 0;
     padding: 0;
     background-color: #ffffff;

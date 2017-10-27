@@ -2,6 +2,7 @@ node_modules
 functions/index.js
 public/index.html
 public/index.js
+public/manifest.json
 .vscode
 .firebaserc
 database.rules.json
