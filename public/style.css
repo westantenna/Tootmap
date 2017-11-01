@@ -11,9 +11,8 @@ body { height: 100%; margin: 0px; padding: 0px }
     display: none;
 }
 
-textarea {
-  font-size: 16px;
-  transform: scale(0.8);
+.twemoji-wrap {
+    font-size: 16px;    
 }
 
 input[type=file] {
@@ -39,6 +38,10 @@ input[type=file] {
     line-height: 38px;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+.detailed-status {
+    width: 300px;
 }
 
 .account__display-name, .detailed-status__application, .detailed-status__datetime, .detailed-status__display-name, .status__display-name, .status__relative-time {
@@ -173,3 +176,14 @@ input[type=file] {
     left:0;
     z-index: 1;
 }
+img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+  }
+
+  .emojione {
+      width: 18px;
+      height: 18px;
+  }

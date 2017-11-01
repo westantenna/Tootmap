@@ -1,4 +1,5 @@
 var tootMap = {
+    before_map_domain: "map.biwakodon.com",
     map_domain: "[MAP_DOMAIN]",
     default_tag: localStorage.getItem('default_tag') ? localStorage.getItem('default_tag') : "[DEFAULT_TAG]",
     client_name: "[CLIENT_NAME]",
@@ -34,7 +35,7 @@ var tootMap = {
     },
 
     timeline: {
-        api_url: "[TIMELINE_GET_API_URL]",
+        api_url: "[API_URL]",
         limit: 40,
         max_id: "",
         last_date: "",
@@ -61,11 +62,11 @@ var tootMap = {
                         +'<img alt="" class="u-photo" src="'+toot['account']['avatar']+'" width="48" height="48">'
                     +'</div></div>'
                     +'<span class="display-name">'
-                        +'<strong class="p-name emojify">'+(toot['account']['display_name'] != '' ? toot['account']['display_name'] : toot['account']['username'])+'</strong>'
+                        +'<strong class="p-name emojify">'+twemoji.parse(toot['account']['display_name'] != '' ? toot['account']['display_name'] : toot['account']['username'])+'</strong>'
                         +'<span>@'+toot['account']['acct']+'</span>'
                     +'</span>'
                 +'</a>'
-                +'<div class="status__content p-name emojify"><div class="e-content" style="display: block; direction: ltr" lang="ja"><p>'+toot['content']+'</p></div></div>'
+                +'<div class="status__content p-name emojify"><div class="e-content" style="display: block; direction: ltr" lang="ja"><p>'+twemoji.parse(toot['content'])+'</p></div></div>'
                 +tootMap.timeline.attachmentsHtml(toot)
                 +'<div class="detailed-status__meta">'
                     +'<data class="dt-published" value="'+date+'"></data>'
@@ -104,6 +105,12 @@ var tootMap = {
                             elem['content'] = elem['content'].replace(e.outerHTML, "");
                         }
                     });
+                });
+                elem['emojis'].forEach(function(emoji) {
+                    var r = new RegExp(":"+emoji['shortcode']+":");
+                    while (elem['content'].match(r)) {
+                        elem['content'] = elem['content'].replace(r, '<img draggable="false" class="emojione" alt="'+emoji['shortcode']+'" title="'+emoji['shortcode']+'" src="'+emoji['url']+'">');
+                    }
                 });
                 elem['innerHTML'] = tootMap.timeline.innerHTML(elem);
             } else {
@@ -286,7 +293,7 @@ var tootMap = {
                     + '<span class="display-name"><span>'+tootMap.api.username+'@'+tootMap.mstdn_domain+'</span></span></a>'
                     + '<textarea cols="30" rows="5" id="status"></textarea>'
                     + '<div><p class="btn btn-primary" id="toot">公開Toot</p>　<p class="btn btn-primary" id="media"><i class="fa fa-camera" aria-hidden="true"></i></p><input type="file" name="media"></div>'
-                    + '<div class="status__attachments__inner" id ="attachments" '+(tootMap.api.media_urls.length==0?'style="display:none"':'')+'>'
+                    + '<div class="status__attachments__inner" id ="attachments">'
                     + attamchments
                     + '</div>'
                     + '</div>';
@@ -514,7 +521,7 @@ var tootMap = {
             + "<div class='btn btn-block btn-light'>タグ：　#<input type='text' id='tag' value='"+tootMap.params.tag+"'></div>"
             + "<a class='btn btn-block btn-light' id='past-tagtl' href='#'>過去のトゥートを取得<br />("+tootMap.getFormatDate(date)+"以前)</a>"
             + "<a class='btn btn-block btn-light' id='tagtl' href='https://"+tootMap.mstdn_domain+"/tags/"+tootMap.params.tag+"' target='_blank'>このタグの公開タイムライン</a>"
-            + "<a class='btn btn-block btn-light' target='_blank' href='https://biwakodon.com/about/more#biwakomap'>使い方はこちら</a>"
+            + "<a class='btn btn-block btn-light' target='_blank' href='https://biwakodon.com/about/more#tootmap'>使い方はこちら</a>"
             + "<div class='btn btn-block btn-light "+(tootMap.api.access_token==null?"":"hidden")+"' id='loginDiv'>連携ドメイン： https://<input type='text' id='domain' value='"+tootMap.mstdn_domain+"'></div>"
             + "<a class='btn btn-block btn-light "+(tootMap.api.access_token==null?"":"hidden")+"' id='login' href='#'>アカウント連携</a>"
             + "<a class='btn btn-block btn-light "+(tootMap.api.access_token!=null?"":"hidden")+"' id='logout' href='#'><img id='avatarIcon' src='"+tootMap.api.avatar_icon+"' height='46px' />アカウント連携解除</a>"
@@ -598,6 +605,9 @@ var tootMap = {
                 var content = tootMap.gmap.createContent(e.latLng);
                 tootMap.gmap.showInfoWindow(e.latLng, content);
                 tootMap.gmap.selectText();
+                $('#status').twemojiPicker({
+                    width: '95%'
+                });
             }
         });
         $("body").on('click', '#past-tagtl', function() {
@@ -637,6 +647,7 @@ var tootMap = {
         });
         $("body").on('click', '#toot', function() {
             var status = $("#status").val();
+            status = tootMap.removeHTMLTag(status);
             status += "\n"+tootMap.gmap.mappingText(tootMap.gmap.open_window.getPosition());
             tootMap.api.toot(status);
         });
@@ -657,9 +668,6 @@ var tootMap = {
             i = tootMap.api.media_ids.indexOf(media_id);
             tootMap.api.media_ids.splice(i, 1);
             tootMap.api.media_urls.splice(i, 1);
-            if (tootMap.api.media_ids.length < 1) {
-                tootMap.hideMediaArea();
-            }
         });
         $("body").on("click", "#no-login",function() {
             localStorage.setItem('modal_flg', 1);
