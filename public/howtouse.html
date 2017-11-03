@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:site_name" content="Tootmap">
+    <meta property="og:title" content="Tootmap">
+    <meta property="og:description" content="マストドンのトゥートに位置情報を付加し、GoogleMapに表示します。">
+    <meta property="og:type" content="place">
+    <link href='/apple-touch-icon.png' rel='apple-touch-icon' sizes='180x180'>
+    <meta property="og:url" content="https://tootmap.net/">
+    <meta property="og:image" content="https://tootmap.net/og_image.png">
+    <meta content="1200" property="og:image:width" />
+    <meta content="630" property="og:image:height" />    
+    <meta content="summary_large_image" property="twitter:card" />
+    <link href="./favicon.ico" rel="icon" type="image/x-icon">
+    <title>使い方 - Tootmap</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="manifest" href="/manifest.json">
+  </head>
+  <body>
+        <main role="main" class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div>
+                        <h2>使い方</h2>
+                        <p>Tootmapでマストドンのアカウント連携を行うと、Tootmapから位置情報付きトゥートを発信することが出来ます。</p>
+                        <p>サイトアクセス時に現れるウィンドウでマストドンインスタンスのドメインを入力し、「アカウント連携」を押すとTootmapとマストドンのアカウントが連携されます。</p>
+                        <p><img src="./tootmap01.png" style="max-width:100%" /></p>
+                        
+                        <p>連携の解除、再連携は左上のメニューから行えます。</p>
+                        <p><img src="./tootmap02.png" style="max-width:100%" /></p>
+                        <p>↓</p>
+                        <p>連携中：</p>
+                        <p><img src="./tootmap03.png" style="max-width:100%" /></p>
+                        <p>未連携：</p>
+                        <p><img src="./tootmap04.png" style="max-width:100%" /></p>
+                        
+                        <p>アカウント連携後に地図をクリック（タップ）するとトゥートの投稿ウィンドウが開きます。トゥートの本文、メディア添付が可能です。</p>
+                        
+                        <p><img src="./tootmap05.png" style="max-width:100%" /></p>
+                        
+                        <p>Tootmapからの投稿は、ハッシュタグTLに掲載するために<em>公開範囲が「公開」となります</em>のでご注意ください。</p>
+                        
+                        <h3>現在位置の表示</h3>
+                        <p>左上のメニューから「現在位置を表示」を選択しますと、地図上に現在位置を示すピンが表示されます</p>
+                        <p><img src="./tootmap07.png" style="max-width:100%" /></p>
+                        <p>このピンからも投稿が可能です。</p>
+                        <p><img src="./tootmap06.png" style="max-width:100%" /></p>
+                        
+                        <h3>利用される上での注意点</h3>
+                        <p><em>位置情報は個人情報と直結する可能性のある情報になります。トゥートされる際はその点を十分ご留意ください</em>。</p>
+                        <p>トゥートを削除することでマップの表示は消えますが、外部の検索エンジンに位置情報と含んだトゥートがキャッシュされて残る場合があります。</p>
+
+                        <h3>Githubで公開しています</h3>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="./sw.js"></script>
+  </body>
+</html>
