@@ -1,6 +1,8 @@
 # Tootmap
 マストドンのハッシュタグタイムライン最新40件（limit）を取得し、位置情報のGET引数の付いたマップページURLを抽出してGoogleマップ上にプロットする。
 
+[https://tootmap.net/howtouse.html](https://tootmap.net/howtouse.html)
+
 ## 利用に必要な情報
 
 * public/index.html
